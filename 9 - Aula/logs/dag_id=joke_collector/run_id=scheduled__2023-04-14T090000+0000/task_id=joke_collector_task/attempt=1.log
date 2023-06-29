@@ -1,0 +1,22 @@
+[2023-04-15T14:19:16.696+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: joke_collector.joke_collector_task scheduled__2023-04-14T09:00:00+00:00 [queued]>
+[2023-04-15T14:19:16.957+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: joke_collector.joke_collector_task scheduled__2023-04-14T09:00:00+00:00 [queued]>
+[2023-04-15T14:19:16.966+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-15T14:19:17.096+0000] {taskinstance.py:1289} INFO - Starting attempt 1 of 2
+[2023-04-15T14:19:17.098+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-15T14:19:18.171+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonVirtualenvOperator): joke_collector_task> on 2023-04-14 09:00:00+00:00
+[2023-04-15T14:19:18.201+0000] {standard_task_runner.py:55} INFO - Started process 205 to run task
+[2023-04-15T14:19:18.224+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'joke_collector', 'joke_collector_task', 'scheduled__2023-04-14T09:00:00+00:00', '--job-id', '142', '--raw', '--subdir', 'DAGS_FOLDER/dag_joke_collector.py', '--cfg-path', '/tmp/tmpwf6eabzj']
+[2023-04-15T14:19:18.226+0000] {standard_task_runner.py:83} INFO - Job 142: Subtask joke_collector_task
+[2023-04-15T14:19:19.079+0000] {task_command.py:389} INFO - Running <TaskInstance: joke_collector.joke_collector_task scheduled__2023-04-14T09:00:00+00:00 [running]> on host e1174705cf95
+[2023-04-15T14:19:21.271+0000] {taskinstance.py:1518} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=***@example.com
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=joke_collector
+AIRFLOW_CTX_TASK_ID=joke_collector_task
+AIRFLOW_CTX_EXECUTION_DATE=2023-04-14T09:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-04-14T09:00:00+00:00
+[2023-04-15T14:19:21.350+0000] {process_utils.py:179} INFO - Executing cmd: /usr/local/bin/python -m virtualenv /tmp/venvyl5y6t2v --system-site-packages
+[2023-04-15T14:19:21.416+0000] {process_utils.py:183} INFO - Output:

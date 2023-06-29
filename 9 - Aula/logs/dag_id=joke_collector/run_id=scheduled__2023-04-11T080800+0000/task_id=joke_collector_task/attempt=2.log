@@ -1,0 +1,58 @@
+[2023-04-12T12:03:56.305+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: joke_collector.joke_collector_task scheduled__2023-04-11T08:08:00+00:00 [queued]>
+[2023-04-12T12:03:56.360+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: joke_collector.joke_collector_task scheduled__2023-04-11T08:08:00+00:00 [queued]>
+[2023-04-12T12:03:56.361+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-12T12:03:56.364+0000] {taskinstance.py:1289} INFO - Starting attempt 2 of 2
+[2023-04-12T12:03:56.366+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-12T12:03:56.480+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonVirtualenvOperator): joke_collector_task> on 2023-04-11 08:08:00+00:00
+[2023-04-12T12:03:56.514+0000] {standard_task_runner.py:55} INFO - Started process 72 to run task
+[2023-04-12T12:03:56.566+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'joke_collector', 'joke_collector_task', 'scheduled__2023-04-11T08:08:00+00:00', '--job-id', '102', '--raw', '--subdir', 'DAGS_FOLDER/dag_joke_collector.py', '--cfg-path', '/tmp/tmpgsvv1np7']
+[2023-04-12T12:03:56.570+0000] {standard_task_runner.py:83} INFO - Job 102: Subtask joke_collector_task
+[2023-04-12T12:03:57.296+0000] {task_command.py:389} INFO - Running <TaskInstance: joke_collector.joke_collector_task scheduled__2023-04-11T08:08:00+00:00 [running]> on host 25e4ce1e7921
+[2023-04-12T12:03:58.214+0000] {taskinstance.py:1518} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=***@example.com
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=joke_collector
+AIRFLOW_CTX_TASK_ID=joke_collector_task
+AIRFLOW_CTX_EXECUTION_DATE=2023-04-11T08:08:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=2
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-04-11T08:08:00+00:00
+[2023-04-12T12:03:58.243+0000] {process_utils.py:179} INFO - Executing cmd: /usr/local/bin/python -m virtualenv /tmp/venvqhcqzjnt --system-site-packages
+[2023-04-12T12:03:58.278+0000] {process_utils.py:183} INFO - Output:
+[2023-04-12T12:04:06.242+0000] {process_utils.py:187} INFO - created virtual environment CPython3.7.16.final.0-64 in 3061ms
+[2023-04-12T12:04:06.247+0000] {process_utils.py:187} INFO -   creator CPython3Posix(dest=/tmp/venvqhcqzjnt, clear=False, no_vcs_ignore=False, global=True)
+[2023-04-12T12:04:06.248+0000] {process_utils.py:187} INFO -   seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/***/.local/share/virtualenv)
+[2023-04-12T12:04:06.254+0000] {process_utils.py:187} INFO -     added seed packages: pip==23.0.1, setuptools==67.4.0, wheel==0.38.4
+[2023-04-12T12:04:06.264+0000] {process_utils.py:187} INFO -   activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+[2023-04-12T12:04:06.896+0000] {process_utils.py:179} INFO - Executing cmd: /tmp/venvqhcqzjnt/bin/pip install -r /tmp/venvqhcqzjnt/requirements.txt
+[2023-04-12T12:04:06.961+0000] {process_utils.py:183} INFO - Output:
+[2023-04-12T12:06:23.742+0000] {process_utils.py:187} INFO - Collecting requests==2.25.1
+[2023-04-12T12:06:24.514+0000] {process_utils.py:187} INFO -   Downloading requests-2.25.1-py2.py3-none-any.whl (61 kB)
+[2023-04-12T12:06:25.270+0000] {process_utils.py:187} INFO -      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.2/61.2 kB 74.3 kB/s eta 0:00:00
+[2023-04-12T12:06:25.324+0000] {process_utils.py:187} INFO - Requirement already satisfied: certifi>=2017.4.17 in /home/***/.local/lib/python3.7/site-packages (from requests==2.25.1->-r /tmp/venvqhcqzjnt/requirements.txt (line 1)) (2022.12.7)
+[2023-04-12T12:06:25.985+0000] {process_utils.py:187} INFO - Collecting idna<3,>=2.5
+[2023-04-12T12:06:26.218+0000] {process_utils.py:187} INFO -   Downloading idna-2.10-py2.py3-none-any.whl (58 kB)
+[2023-04-12T12:06:29.045+0000] {process_utils.py:187} INFO -      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.8/58.8 kB 22.1 kB/s eta 0:00:00
+[2023-04-12T12:06:29.052+0000] {process_utils.py:187} INFO - Requirement already satisfied: urllib3<1.27,>=1.21.1 in /home/***/.local/lib/python3.7/site-packages (from requests==2.25.1->-r /tmp/venvqhcqzjnt/requirements.txt (line 1)) (1.26.15)
+[2023-04-12T12:06:29.055+0000] {process_utils.py:187} INFO - Requirement already satisfied: chardet<5,>=3.0.2 in /home/***/.local/lib/python3.7/site-packages (from requests==2.25.1->-r /tmp/venvqhcqzjnt/requirements.txt (line 1)) (4.0.0)
+[2023-04-12T12:06:52.073+0000] {process_utils.py:187} INFO - Installing collected packages: idna, requests
+[2023-04-12T12:06:52.074+0000] {process_utils.py:187} INFO -   Attempting uninstall: idna
+[2023-04-12T12:06:52.081+0000] {process_utils.py:187} INFO -     Found existing installation: idna 3.4
+[2023-04-12T12:06:52.084+0000] {process_utils.py:187} INFO -     Not uninstalling idna at /home/***/.local/lib/python3.7/site-packages, outside environment /tmp/venvqhcqzjnt
+[2023-04-12T12:06:52.086+0000] {process_utils.py:187} INFO -     Can't uninstall 'idna'. No files were found to uninstall.
+[2023-04-12T12:06:52.968+0000] {process_utils.py:187} INFO -   Attempting uninstall: requests
+[2023-04-12T12:06:52.978+0000] {process_utils.py:187} INFO -     Found existing installation: requests 2.28.2
+[2023-04-12T12:06:52.984+0000] {process_utils.py:187} INFO -     Not uninstalling requests at /home/***/.local/lib/python3.7/site-packages, outside environment /tmp/venvqhcqzjnt
+[2023-04-12T12:06:52.985+0000] {process_utils.py:187} INFO -     Can't uninstall 'requests'. No files were found to uninstall.
+[2023-04-12T12:06:56.023+0000] {process_utils.py:187} INFO - ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+[2023-04-12T12:06:56.024+0000] {process_utils.py:187} INFO - hvac 1.1.0 requires requests<3.0.0,>=2.27.1, but you have requests 2.25.1 which is incompatible.
+[2023-04-12T12:06:56.025+0000] {process_utils.py:187} INFO - docker 6.0.1 requires requests>=2.26.0, but you have requests 2.25.1 which is incompatible.
+[2023-04-12T12:06:56.026+0000] {process_utils.py:187} INFO - apache-***-providers-http 4.2.0 requires requests>=2.26.0, but you have requests 2.25.1 which is incompatible.
+[2023-04-12T12:06:56.027+0000] {process_utils.py:187} INFO - Successfully installed idna-2.10 requests-2.25.1
+[2023-04-12T12:06:58.254+0000] {process_utils.py:179} INFO - Executing cmd: /tmp/venvqhcqzjnt/bin/python /tmp/venvqhcqzjnt/script.py /tmp/venvqhcqzjnt/script.in /tmp/venvqhcqzjnt/script.out /tmp/venvqhcqzjnt/string_args.txt
+[2023-04-12T12:06:58.275+0000] {process_utils.py:183} INFO - Output:
+[2023-04-12T12:07:06.989+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-04-12T12:07:07.022+0000] {taskinstance.py:1332} INFO - Marking task as SUCCESS. dag_id=joke_collector, task_id=joke_collector_task, execution_date=20230411T080800, start_date=20230412T120356, end_date=20230412T120707
+[2023-04-12T12:07:07.103+0000] {local_task_job.py:212} INFO - Task exited with return code 0
+[2023-04-12T12:07:07.155+0000] {taskinstance.py:2596} INFO - 0 downstream tasks scheduled from follow-on schedule check

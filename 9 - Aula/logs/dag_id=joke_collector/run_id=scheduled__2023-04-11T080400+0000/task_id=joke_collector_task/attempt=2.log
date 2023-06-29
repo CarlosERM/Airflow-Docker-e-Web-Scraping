@@ -1,0 +1,254 @@
+[2023-04-12T12:03:56.203+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: joke_collector.joke_collector_task scheduled__2023-04-11T08:04:00+00:00 [queued]>
+[2023-04-12T12:03:56.252+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: joke_collector.joke_collector_task scheduled__2023-04-11T08:04:00+00:00 [queued]>
+[2023-04-12T12:03:56.253+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-12T12:03:56.263+0000] {taskinstance.py:1289} INFO - Starting attempt 2 of 2
+[2023-04-12T12:03:56.264+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-12T12:03:56.338+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonVirtualenvOperator): joke_collector_task> on 2023-04-11 08:04:00+00:00
+[2023-04-12T12:03:56.364+0000] {standard_task_runner.py:55} INFO - Started process 70 to run task
+[2023-04-12T12:03:56.372+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'joke_collector', 'joke_collector_task', 'scheduled__2023-04-11T08:04:00+00:00', '--job-id', '101', '--raw', '--subdir', 'DAGS_FOLDER/dag_joke_collector.py', '--cfg-path', '/tmp/tmpigq_a0uz']
+[2023-04-12T12:03:56.386+0000] {standard_task_runner.py:83} INFO - Job 101: Subtask joke_collector_task
+[2023-04-12T12:03:57.013+0000] {task_command.py:389} INFO - Running <TaskInstance: joke_collector.joke_collector_task scheduled__2023-04-11T08:04:00+00:00 [running]> on host 25e4ce1e7921
+[2023-04-12T12:03:57.725+0000] {taskinstance.py:1518} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=***@example.com
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=joke_collector
+AIRFLOW_CTX_TASK_ID=joke_collector_task
+AIRFLOW_CTX_EXECUTION_DATE=2023-04-11T08:04:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=2
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-04-11T08:04:00+00:00
+[2023-04-12T12:03:57.757+0000] {process_utils.py:179} INFO - Executing cmd: /usr/local/bin/python -m virtualenv /tmp/venv922uswts --system-site-packages
+[2023-04-12T12:03:57.824+0000] {process_utils.py:183} INFO - Output:
+[2023-04-12T12:04:06.395+0000] {process_utils.py:187} INFO - created virtual environment CPython3.7.16.final.0-64 in 3237ms
+[2023-04-12T12:04:06.405+0000] {process_utils.py:187} INFO -   creator CPython3Posix(dest=/tmp/venv922uswts, clear=False, no_vcs_ignore=False, global=True)
+[2023-04-12T12:04:06.407+0000] {process_utils.py:187} INFO -   seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/***/.local/share/virtualenv)
+[2023-04-12T12:04:06.409+0000] {process_utils.py:187} INFO -     added seed packages: pip==23.0.1, setuptools==67.4.0, wheel==0.38.4
+[2023-04-12T12:04:06.414+0000] {process_utils.py:187} INFO -   activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+[2023-04-12T12:04:06.646+0000] {process_utils.py:179} INFO - Executing cmd: /tmp/venv922uswts/bin/pip install -r /tmp/venv922uswts/requirements.txt
+[2023-04-12T12:04:06.709+0000] {process_utils.py:183} INFO - Output:
+[2023-04-12T12:04:41.381+0000] {base_job.py:243} ERROR - LocalTaskJob heartbeat got an exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3361, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/jobs/base_job.py", line 239, in heartbeat
+    self.heartbeat_callback(session=session)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/session.py", line 72, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/jobs/local_task_job.py", line 231, in heartbeat_callback
+    self.task_instance.refresh_from_db()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/session.py", line 75, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 798, in refresh_from_db
+    ti = qry.one_or_none()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 2850, in one_or_none
+    return self._iter().one_or_none()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 2919, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1713, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1553, in _connection_for_bind
+    engine, execution_options
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3315, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3394, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3365, in _wrap_pool_connect
+    e, dialect, self
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2199, in _handle_dbapi_exception_noconnection
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3361, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2023-04-12T12:05:47.463+0000] {base_job.py:243} ERROR - LocalTaskJob heartbeat got an exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3361, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/jobs/base_job.py", line 215, in heartbeat
+    session.merge(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 3059, in merge
+    _resolve_conflict_map=_resolve_conflict_map,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 3137, in _merge
+    options=options,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2858, in get
+    execution_options=execution_options,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2976, in _get_impl
+    load_options=load_options,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/loading.py", line 534, in load_on_pk_identity
+    bind_arguments=bind_arguments,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1713, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1553, in _connection_for_bind
+    engine, execution_options
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3315, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3394, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3365, in _wrap_pool_connect
+    e, dialect, self
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2199, in _handle_dbapi_exception_noconnection
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3361, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2023-04-12T12:06:23.314+0000] {process_utils.py:187} INFO - Collecting requests==2.25.1
+[2023-04-12T12:06:24.887+0000] {process_utils.py:187} INFO -   Downloading requests-2.25.1-py2.py3-none-any.whl (61 kB)
+[2023-04-12T12:06:25.954+0000] {process_utils.py:187} INFO -      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.2/61.2 kB 52.9 kB/s eta 0:00:00
+[2023-04-12T12:06:26.348+0000] {process_utils.py:187} INFO - Collecting idna<3,>=2.5
+[2023-04-12T12:06:26.330+0000] {process_utils.py:187} INFO -   Downloading idna-2.10-py2.py3-none-any.whl (58 kB)
+[2023-04-12T12:06:27.739+0000] {process_utils.py:187} INFO -      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.8/58.8 kB 245.6 kB/s eta 0:00:00
+[2023-04-12T12:06:27.742+0000] {process_utils.py:187} INFO - Requirement already satisfied: chardet<5,>=3.0.2 in /home/***/.local/lib/python3.7/site-packages (from requests==2.25.1->-r /tmp/venv922uswts/requirements.txt (line 1)) (4.0.0)
+[2023-04-12T12:06:27.743+0000] {process_utils.py:187} INFO - Requirement already satisfied: urllib3<1.27,>=1.21.1 in /home/***/.local/lib/python3.7/site-packages (from requests==2.25.1->-r /tmp/venv922uswts/requirements.txt (line 1)) (1.26.15)
+[2023-04-12T12:06:27.745+0000] {process_utils.py:187} INFO - Requirement already satisfied: certifi>=2017.4.17 in /home/***/.local/lib/python3.7/site-packages (from requests==2.25.1->-r /tmp/venv922uswts/requirements.txt (line 1)) (2022.12.7)
+[2023-04-12T12:06:52.010+0000] {process_utils.py:187} INFO - Installing collected packages: idna, requests
+[2023-04-12T12:06:52.012+0000] {process_utils.py:187} INFO -   Attempting uninstall: idna
+[2023-04-12T12:06:52.020+0000] {process_utils.py:187} INFO -     Found existing installation: idna 3.4
+[2023-04-12T12:06:52.038+0000] {process_utils.py:187} INFO -     Not uninstalling idna at /home/***/.local/lib/python3.7/site-packages, outside environment /tmp/venv922uswts
+[2023-04-12T12:06:52.039+0000] {process_utils.py:187} INFO -     Can't uninstall 'idna'. No files were found to uninstall.
+[2023-04-12T12:06:52.986+0000] {process_utils.py:187} INFO -   Attempting uninstall: requests
+[2023-04-12T12:06:52.987+0000] {process_utils.py:187} INFO -     Found existing installation: requests 2.28.2
+[2023-04-12T12:06:52.988+0000] {process_utils.py:187} INFO -     Not uninstalling requests at /home/***/.local/lib/python3.7/site-packages, outside environment /tmp/venv922uswts
+[2023-04-12T12:06:52.988+0000] {process_utils.py:187} INFO -     Can't uninstall 'requests'. No files were found to uninstall.
+[2023-04-12T12:06:56.022+0000] {process_utils.py:187} INFO - ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+[2023-04-12T12:06:56.023+0000] {process_utils.py:187} INFO - hvac 1.1.0 requires requests<3.0.0,>=2.27.1, but you have requests 2.25.1 which is incompatible.
+[2023-04-12T12:06:56.030+0000] {process_utils.py:187} INFO - docker 6.0.1 requires requests>=2.26.0, but you have requests 2.25.1 which is incompatible.
+[2023-04-12T12:06:56.033+0000] {process_utils.py:187} INFO - apache-***-providers-http 4.2.0 requires requests>=2.26.0, but you have requests 2.25.1 which is incompatible.
+[2023-04-12T12:06:56.034+0000] {process_utils.py:187} INFO - Successfully installed idna-2.10 requests-2.25.1
+[2023-04-12T12:06:58.197+0000] {process_utils.py:179} INFO - Executing cmd: /tmp/venv922uswts/bin/python /tmp/venv922uswts/script.py /tmp/venv922uswts/script.in /tmp/venv922uswts/script.out /tmp/venv922uswts/string_args.txt
+[2023-04-12T12:06:58.213+0000] {process_utils.py:183} INFO - Output:
+[2023-04-12T12:07:06.974+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-04-12T12:07:07.003+0000] {taskinstance.py:1332} INFO - Marking task as SUCCESS. dag_id=joke_collector, task_id=joke_collector_task, execution_date=20230411T080400, start_date=20230412T120356, end_date=20230412T120707
+[2023-04-12T12:07:07.078+0000] {local_task_job.py:212} INFO - Task exited with return code 0
+[2023-04-12T12:07:07.117+0000] {taskinstance.py:2596} INFO - 0 downstream tasks scheduled from follow-on schedule check

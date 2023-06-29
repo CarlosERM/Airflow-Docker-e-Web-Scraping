@@ -1,0 +1,82 @@
+---
+version: "3.4"
+
+#Com isso aqui dá pra reutilizar o que foi definido nesse campo.
+x-common: &common # Imagem do Airflow.
+  image: apache/airflow:2.3.0
+  # Usuário do Airflow.
+  user: "${AIRFLOW_UID}:0"
+  # Caminho da variável de ambiente.
+  env_file:
+    - .env
+  # Definição dos volumes. Através deles podemos sincronizar arquivos que estão nas nossas pastas com
+  # os arquivos que estão dentro do container.
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
+    - ./plugins:/opt/airflow/plugins
+    - /var/run/docker.sock:/var/run/docker.sock
+# Depends-on define a ordem de execução entre os containers. Permite a reutilização.
+x-depends-on: &depends-on
+  depends_on:
+    postgres:
+      condition: service_healthy
+    airflow-init:
+      condition: service_completed_successfully
+
+services:
+  #  Imagem do banco de dados PostgreSQL.
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    # São as portas mapeadas do banco.
+    ports:
+      - "5434:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 5s
+      retries: 5
+    # Caminho da variável de ambiente.
+    env_file:
+      - .env
+  # O Scheduler monitora todas as tarefas e
+  # DAGs e aciona as instâncias da tarefa assim que
+  # suas dependências são concluídas.
+  scheduler:
+    <<: *common # Utiliza das definições descritas em common.
+    <<: *depends-on # Ele depende do sucesso do banco e do airflow init.
+    container_name: airflow-scheduler # É só a definição do nome do container.
+    command: scheduler
+    restart: on-failure # Se falhar, ele é reiniciado
+    # Mapeamento das portas do scheduler.
+    ports:
+      - "8793:8793"
+  # Configuração do Airflow Webserver
+  # É a UI do Airflow. Nela você pode ver as suas dags e utilizá-las de um modo mais simplificado.
+  webserver:
+    <<: *common # Reutilização de common
+    <<: *depends-on # Reutilizacão de depends-on
+    container_name: airflow-webserver # Nome do container.
+    restart: always # Sempre vai reiniciar se o container parar.
+    command: webserver
+    # Mapeamento de portas.
+    ports:
+      - "8080:8080"
+    # Um health check significa checar a saúde de um recurso para determinar
+    # se aquele recurso está operando normalmente.
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+  # É o serviço inicialização do Airflow.
+  airflow-init:
+    <<: *common # Reutiliza o que foi declado aqui.
+    container_name: airflow-init # Nome do container.
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        mkdir -p /sources/logs /sources/dags /sources/plugins
+        chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
+        exec /entrypoint airflow version
